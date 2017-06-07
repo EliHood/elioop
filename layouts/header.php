@@ -28,15 +28,16 @@
             $guest = new User();
 
             if($guest->is_logged()):?>
-            <li><a href="/dashboard.php?q=logout">Logout</a></li>
+           
             <li><a href="/dashboard">Profile</a></li>
+            <li><a href="/dashboard.php?q=logout">Logout</a></li>
 
             <?php else :?>
                 <li><a href="/login.php">Login</a></li>
                 
           <?php endif;?>
 
-            <li><a href="/contact">Contact</a></li>
+      
 
           </ul>
         </div><!--/.nav-collapse -->

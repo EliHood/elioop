@@ -57,6 +57,24 @@ require_once 'layouts/header.php';
 <div class="container">
     <div class="row">
         <div class="col-md-4">
+
+
+            <?php
+            if(isset($errors))
+            {
+               foreach($errors as $error)
+               {
+                  ?>
+                  <div class="alert alert-danger">
+                      <i class="glyphicon glyphicon-warning-sign"></i> &nbsp; <?php echo $error; ?>
+                  </div>
+                  <?php
+               }
+            }
+   
+            ?>
+            
+          
             <h1>Sign In</h1>
             
             <form action="" method="POST">
