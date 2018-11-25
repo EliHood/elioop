@@ -21,23 +21,23 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
+          <li class="active"><a href="index.php">Home <span class="sr-only">(current)</span></a></li>
 
-            <?php 
+            <?php
 
             $guest = new User();
 
             if($guest->is_logged()):?>
-           
-            <li><a href="/dashboard">Profile</a></li>
-            <li><a href="/dashboard.php?q=logout">Logout</a></li>
+
+            <li><a href="dashboard">Profile</a></li>
+            <li><a href="dashboard.php?q=logout">Logout</a></li>
 
             <?php else :?>
-                <li><a href="/login.php">Login</a></li>
-                
+                <li><a href="login.php">Login</a></li>
+
           <?php endif;?>
 
-      
+
 
           </ul>
         </div><!--/.nav-collapse -->

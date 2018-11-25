@@ -12,7 +12,7 @@ class User extends Db{
 		$this->db = $this->connect();
 
 	}
-	
+
 
 	public function signup($email, $password, $username)
 	{
@@ -24,7 +24,7 @@ class User extends Db{
 			$stmt->bindparam(':username', $username);
 			$stmt->execute();
 
-            return $stmt; 
+      return $stmt;
 
 		}
 
@@ -46,27 +46,27 @@ class User extends Db{
             {
                 if(password_verify($password,$userRow['user_pass']))
                 {
-                	$_SESSION['login'] = TRUE;
+                		$_SESSION['login'] = TRUE;
                     $_SESSION['user_session'] = $userRow['user_name'];
 
                     return true;
 
-                    
+
                 }
-                
+
                 else{
                     return false;
                 }
             }
         }
-        
-        
+
+
         catch(PDOExeception $e)
         {
             echo $e->getMessage();
         }
     }
-    
+
     public function is_logged()
     {
     	if(isset($_SESSION['login'])){
@@ -74,7 +74,7 @@ class User extends Db{
     			return $_SESSION['login'];
     		}
     	}
-    
+
     }
 
     public function logout()
@@ -90,7 +90,7 @@ class User extends Db{
             $stmt = $this->db->prepare("SELECT user_name FROM users WHERE user_name=:username");
             $stmt->execute(array(':username'=>$username));
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $row['user_name'] == $username;  
+            return $row['user_name'] == $username;
 
 
         }
@@ -110,7 +110,7 @@ class User extends Db{
     	return header("Location:$url.php");
     }
 
- 
+
 
 
 }
