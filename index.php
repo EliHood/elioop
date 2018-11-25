@@ -14,8 +14,9 @@ if($guest->is_logged())
 
 if (isset($_POST['btn_signup']) ){
 
-    $username = htmlentities($_POST['txt_username']);
-    $unpass = htmlentities($_POST['txt_password']);
+    $username = htmlentities(trim($_POST['txt_username']));
+
+    $unpass = htmlentities(trim($_POST['txt_password']));
     $password = password_hash($unpass, PASSWORD_BCRYPT, ['cost' => 12] );
     $unemail = $_POST['txt_email'];
     $email = filter_var($unemail, FILTER_VALIDATE_EMAIL);
