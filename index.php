@@ -1,9 +1,16 @@
 <?php
 session_start();
+// Report simple running errors
 
 require_once 'User.php';
 $guest = new User();
 
+
+$username = htmlentities(trim($_POST['txt_username']));
+$unpass = htmlentities(trim($_POST['txt_password']));
+$password = password_hash($unpass, PASSWORD_BCRYPT, ['cost' => 12] );
+$unemail = $_POST['txt_email'];
+$email = filter_var($unemail, FILTER_VALIDATE_EMAIL);
 
 
 if($guest->is_logged())
@@ -11,46 +18,27 @@ if($guest->is_logged())
     $guest->redirect('dashboard');
 }
 
-
 if (isset($_POST['btn_signup']) ){
-
-    $username = htmlentities(trim($_POST['txt_username']));
-
-    $unpass = htmlentities(trim($_POST['txt_password']));
-    $password = password_hash($unpass, PASSWORD_BCRYPT, ['cost' => 12] );
-    $unemail = $_POST['txt_email'];
-    $email = filter_var($unemail, FILTER_VALIDATE_EMAIL);
-
-    $guest = new User();
-
-
-    if($email == ""){
-       $errors[]= "Enter a Email";
-    }
-
-    if($username == ""){
-       $errors[]= "Enter a Username please";
-
-    }
-
-    if($password == ""){
-        $errors[]= "Enter a Password";
-    }
-
-
 
     if($guest->check_user_exists($username)){
         $errors[]= "Username Already Taken";
     }
+    elseif(strlen($username) < 6){
+      $errors[] = "Username must be at least 6 characters";
+    }
+    elseif($guest->check_email_exists($email)){
+        $errors[]= "Email Already Taken";
+    }
 
-    if($guest->signup($email,$password,$username)){
+    elseif($guest->signup($email,$password,$username)){
         header("Location:index.php?registered");
         die('didnt redirect');
     }
-
     else{
       $errors[]= "Invalid Entry";
     }
+
+
 }
 
 $title = "Home";
@@ -99,13 +87,13 @@ require_once 'layouts/header.php';
 
                   <div class="form-group">
                     <label for="Username">Username</label>
-                    <input type="text" class="form-control" aria-describedby="emailHelp" name="txt_username" placeholder="Enter Username">
+                    <input type="text" class="form-control" aria-describedby="emailHelp" name="txt_username" placeholder="Enter Username" required>
                   </div>
 
 
                   <div class="form-group">
                     <label for="Password">Password</label>
-                    <input type="password" class="form-control" aria-describedby="emailHelp" name="txt_password" placeholder="Enter password">
+                    <input type="password" class="form-control" aria-describedby="emailHelp" name="txt_password" placeholder="Enter password" required>
                   </div>
 
 

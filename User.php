@@ -102,6 +102,23 @@ class User extends Db{
     }
 
 
+		public function check_email_exists($email)
+		{
+				try{
+						$stmt = $this->db->prepare("SELECT user_email FROM users WHERE user_email=:email");
+						$stmt->execute(array(':email'=>$email));
+						$row = $stmt->fetch(PDO::FETCH_ASSOC);
+						return $row['user_email'] == $email;
+				}
+
+				catch(PDOExeception $e)
+				{
+						echo $e->getMessage();
+				}
+		}
+
+
+
 
 
 

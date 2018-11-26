@@ -30,7 +30,7 @@ if(isset($_POST['btn_login'])){
     {
         $errors[] = "Enter password please";
     }
-  
+
 
     if($guest->login($username, $password)){
         $guest->redirect('dashboard');
