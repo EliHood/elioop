@@ -14,7 +14,7 @@ class FirstTest extends TestCase{
   {
     $user = new User();
     $email = "test@example.com";
-    $password = "janemba";
+    $password = "fish123";
     $username = "johndoe133";
 
     $result = $user->signup($email, $password, $username);
