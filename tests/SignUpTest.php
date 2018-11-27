@@ -9,4 +9,16 @@ class FirstTest extends TestCase{
     $condition = true;
     $this->assertTrue($condition);
   }
+
+  public function testUserSignUp()
+  {
+    $user = new User();
+    $email = "test@example.com";
+    $password = "janemba";
+    $username = "johndoe133";
+
+    $result = $user->signup($email, $password, $username);
+    $this->assertTrue($result);
+  }
+
 }

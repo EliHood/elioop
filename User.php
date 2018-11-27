@@ -8,12 +8,13 @@ class User extends Db{
 
 	public function __construct()
 	{
+
 		$this->db = $this->connect();
 
 	}
 
 
-	public function signup(string $email, $password, $username)
+	public function signup($email, $password, $username)
 	{
 		try{
 			$stmt = $this->db->prepare("INSERT INTO users (user_email, user_pass, user_name) VALUES (:email, :password, :username) ");
