@@ -37,26 +37,26 @@ class User extends Db{
 
     public function login(string $username, $password)
     {
-        try{
-            $stmt = $this->db->prepare("SELECT * FROM users WHERE user_name=:username OR user_pass=:password LIMIT 1");
-            $stmt->execute(array(':username'=>$username, ':password'=>$password ));
-            $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($stmt->rowCount() > 0)
-            {
-                if(password_verify($password,$userRow['user_pass']))
-                {
-                	$_SESSION['login'] = TRUE;
-                    $_SESSION['user_session'] = $userRow['user_name'];
+      try{
+          $stmt = $this->db->prepare("SELECT * FROM users WHERE user_name=:username OR user_pass=:password LIMIT 1");
+          $stmt->execute(array(':username'=>$username, ':password'=>$password ));
+          $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+          if ($stmt->rowCount() > 0)
+          {
+              if(password_verify($password,$userRow['user_pass']))
+              {
+              	$_SESSION['login'] = TRUE;
+                  $_SESSION['user_session'] = $userRow['user_name'];
 
-                    return true;
+                  return true;
 
 
-                }
+              }
 
-                else{
-                    return false;
-                }
-            }
+              else{
+                  return false;
+              }
+          }
         }
 
 
@@ -85,19 +85,19 @@ class User extends Db{
 
     public function check_user_exists($username)
     {
-        try{
-            $stmt = $this->db->prepare("SELECT user_name FROM users WHERE user_name=:username");
-            $stmt->execute(array(':username'=>$username));
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $row['user_name'] == $username;
+      try{
+          $stmt = $this->db->prepare("SELECT user_name FROM users WHERE user_name=:username");
+          $stmt->execute(array(':username'=>$username));
+          $row = $stmt->fetch(PDO::FETCH_ASSOC);
+          return $row['user_name'] == $username;
 
 
-        }
+      }
 
-        catch(PDOExeception $e)
-        {
-            echo $e->getMessage();
-        }
+      catch(PDOExeception $e)
+      {
+          echo $e->getMessage();
+      }
     }
 
 	public function check_email_exists($email)
@@ -116,10 +116,10 @@ class User extends Db{
 	}
 
 
-    public function redirect($url)
-    {
-    	return header("Location:$url.php");
-    }
+  public function redirect($url)
+  {
+  	return header("Location:$url.php");
+  }
 
 
 
