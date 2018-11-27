@@ -1,6 +1,5 @@
 <?php
 
-
 require_once 'Db.php';
 
 class User extends Db{
@@ -14,7 +13,7 @@ class User extends Db{
 	}
 
 
-	public function signup($email, $password, $username)
+	public function signup(string $email, $password, $username)
 	{
 		try{
 			$stmt = $this->db->prepare("INSERT INTO users (user_email, user_pass, user_name) VALUES (:email, :password, :username) ");
@@ -36,7 +35,7 @@ class User extends Db{
 
 	}
 
-    public function login($username, $password)
+    public function login(string $username, $password)
     {
         try{
             $stmt = $this->db->prepare("SELECT * FROM users WHERE user_name=:username OR user_pass=:password LIMIT 1");
@@ -46,7 +45,7 @@ class User extends Db{
             {
                 if(password_verify($password,$userRow['user_pass']))
                 {
-                		$_SESSION['login'] = TRUE;
+                	$_SESSION['login'] = TRUE;
                     $_SESSION['user_session'] = $userRow['user_name'];
 
                     return true;
@@ -101,25 +100,20 @@ class User extends Db{
         }
     }
 
-
-		public function check_email_exists($email)
-		{
-				try{
-						$stmt = $this->db->prepare("SELECT user_email FROM users WHERE user_email=:email");
-						$stmt->execute(array(':email'=>$email));
-						$row = $stmt->fetch(PDO::FETCH_ASSOC);
-						return $row['user_email'] == $email;
-				}
-
-				catch(PDOExeception $e)
-				{
-						echo $e->getMessage();
-				}
+	public function check_email_exists($email)
+	{
+		try{
+				$stmt = $this->db->prepare("SELECT user_email FROM users WHERE user_email=:email");
+				$stmt->execute(array(':email'=>$email));
+				$row = $stmt->fetch(PDO::FETCH_ASSOC);
+				return $row['user_email'] == $email;
 		}
 
-
-
-
+		catch(PDOExeception $e)
+		{
+				echo $e->getMessage();
+		}
+	}
 
 
     public function redirect($url)

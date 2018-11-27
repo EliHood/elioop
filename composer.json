@@ -1,0 +1,6 @@
+{
+    "name": "poweruser/elioop",
+    "require": {
+        "phpunit/phpunit": "^7.4"
+    }
+}

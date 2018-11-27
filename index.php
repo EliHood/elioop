@@ -26,6 +26,10 @@ if (isset($_POST['btn_signup']) ){
     elseif(strlen($username) < 6){
       $errors[] = "Username must be at least 6 characters";
     }
+    elseif(strlen($unpass) < 6){
+      $errors[] = "Password must be at least 6 characters";
+    }
+
     elseif($guest->check_email_exists($email)){
         $errors[]= "Email Already Taken";
     }
