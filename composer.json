@@ -1,11 +1,13 @@
 {
     "name": "poweruser/elioop",
     "require": {
-        "phpunit/phpunit": "^7.4"
+        "phpunit/phpunit": "^7.4",
+        "fzaninotto/faker": "^1.8"
+
     },
     "autoload":{
       "psr-0":{
-        "Eli": ""
+        "myApp": ""
       }
     }
 }

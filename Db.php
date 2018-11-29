@@ -1,4 +1,6 @@
 <?php
+namespace myApp;
+use PDO;
 
 class Db{
 

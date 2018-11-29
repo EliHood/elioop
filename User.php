@@ -1,6 +1,8 @@
 <?php
 
-require_once 'Db.php';
+namespace myApp;
+use PDO;
+
 
 class User extends Db{
 

@@ -1,9 +1,10 @@
 <?php
 session_start();
-error_reporting(-1);
-require_once 'User.php';
+require_once 'bootstrap.php';
 
-$user = new User();
+error_reporting(-1);
+
+$user = new \myApp\User();
 if(isset($_GET['q'])){
    $user->logout();
    $user->redirect('login');
@@ -18,7 +19,7 @@ require_once 'layouts/header.php';
 	<div class="row">
 		<div class="col-md-4">
 
-		<h1>Welcome 
+		<h1>Welcome
 		<?php
 		$usern= $_SESSION['user_session'];
 
@@ -29,7 +30,7 @@ require_once 'layouts/header.php';
 		?>
 		</h1>
 
-			
+
 		</div>
 	</div>
 </div>

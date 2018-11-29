@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +26,7 @@
 
             <?php
 
-            $guest = new User();
+            $guest = new \myApp\User();
 
             if($guest->is_logged()):?>
 

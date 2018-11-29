@@ -1,11 +1,7 @@
 <?php
 session_start();
-require_once 'bootstrap.php';
-
-
 
 // Report simple running errors
-
 
 $guest = new \myApp\User();
 

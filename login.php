@@ -1,10 +1,12 @@
 <?php
+require_once 'bootstrap.php';
 session_start();
 error_reporting(-1);
-require 'Db.php';
-require 'User.php';
 
-$guest = new User();
+
+$guest =  new myApp\User();
+
+
 if($guest->is_logged())
 {
     $guest->redirect('dashboard');
@@ -19,7 +21,6 @@ if(isset($_POST['btn_login'])){
     $password = $_POST['txt_pass'];
 
 
-    $guest = new User();
     if($username == "")
     {
       $errors[] = 'Enter username please';
